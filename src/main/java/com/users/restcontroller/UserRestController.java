@@ -42,13 +42,13 @@ public class UserRestController {
         return ResponseEntity.ok(userService.findAll().stream().map(x->userMapper.toDto(x)).collect(Collectors.toList()));
     }
 
-    @PostMapping(value = "user/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/user/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addUser(@Valid @RequestBody final UserDTO dto){
         userService.add(userMapper.fromDto(dto));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "user/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/user/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody final UserDTO dto){
         return ResponseEntity.ok(userMapper.toDto(userService.update(userMapper.fromDto(dto))));
     }

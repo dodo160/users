@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService {
         user.setName(entity.getName());
         return userRepository.save(user);
     }
+
+    @Override
+    public void delete(final Integer id) {
+        userRepository.deleteById(id);
+    }
 }

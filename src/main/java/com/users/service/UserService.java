@@ -13,4 +13,6 @@ public interface UserService {
     User add(User entity);
 
     User update(User entity);
+
+    void delete(Integer id);
 }
