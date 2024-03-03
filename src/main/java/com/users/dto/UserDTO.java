@@ -1,8 +1,11 @@
 package com.users.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class UserDTO {
 
     private int id;
+    @NotEmpty()
     private String name;
 
     public int getId() {

@@ -15,6 +15,7 @@ public class User {
     private int id;
 
     @NotEmpty
+    @Column(name = "name", nullable = false)
     private String name;
 
     public int getId() {
