@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/delete")
 public class DeleteRestController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public DeleteRestController(UserService userService) {
         this.userService = userService;

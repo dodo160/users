@@ -12,7 +12,7 @@ import java.util.Objects;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -42,6 +42,8 @@ public class UserServiceImpl implements UserService {
             throw new ValidationException("User entity doesn't exist with id: " + entity.getId());
         }
         user.setName(entity.getName());
+        user.setUsername(entity.getUsername());
+        user.setPassword(entity.getPassword());
         return userRepository.save(user);
     }
 

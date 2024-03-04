@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
 @RestController
 public class UserRestController {
 
-    private UserService userService;
+    private final UserService userService;
 
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
 
     public UserRestController(UserService userService, UserMapper userMapper) {
         this.userService = userService;

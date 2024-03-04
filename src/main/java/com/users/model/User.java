@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name = "user")
@@ -15,8 +16,16 @@ public class User {
     private int id;
 
     @NotEmpty
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String name;
+
+    @NotEmpty
+    @Column(nullable = false)
+    private String username;
+
+    @NotEmpty
+    @Column(nullable = false)
+    private String password;
 
     public int getId() {
         return id;
@@ -34,6 +43,22 @@ public class User {
         this.name = name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = new BCryptPasswordEncoder().encode(password);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,12 +67,12 @@ public class User {
 
         User user = (User) o;
 
-        return new EqualsBuilder().append(id, user.id).append(name, user.name).isEquals();
+        return new EqualsBuilder().append(id, user.id).append(name, user.name).append(username, user.username).append(password, user.password).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(id).append(name).toHashCode();
+        return new HashCodeBuilder(17, 37).append(id).append(name).append(username).append(password).toHashCode();
     }
 
     @Override
@@ -55,6 +80,8 @@ public class User {
         return new ToStringBuilder(this)
                 .append("id", id)
                 .append("name", name)
+                .append("username", username)
+                .append("password", password)
                 .toString();
     }
 }
