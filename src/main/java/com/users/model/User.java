@@ -7,9 +7,13 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "user", uniqueConstraints = { @UniqueConstraint(columnNames = "username")} )
+public class User implements Serializable {
+
+    private static final long serialVersionUID = -4521424095028868588L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
